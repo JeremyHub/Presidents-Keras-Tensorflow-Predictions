@@ -3,17 +3,15 @@ from tensorflow import keras
 import numpy as np
 import pandas as pd
 
-model = keras.models.load_model('kerasModel')
-# model = keras.models.load_model('kerasModelUpperLower')
 
-def makePrediction():
+def makeNormalPrediction(model, isStarting, inputHand):
     hand = []
-    starting = int(input("Starting player? (0 or 1): "))
+    starting = int(isStarting)
+    inputHand = str(inputHand)
     if starting == 1:
         hand.append(1.7)
     elif starting == 0:
         hand.append(-0.5)
-    inputHand = (str(input("Please input the hand: ")))
     handDict = {}
     for num in inputHand.split(inputHand[1]):
         if not num in handDict.keys():
@@ -34,9 +32,6 @@ def makePrediction():
             hand.append(3.5)
 
     predictions = model.predict([hand])
-    print(predictions[0])
-    print(np.argmax(predictions[0]))
+    # print(predictions[0])
+    # print(np.argmax(predictions[0]))
     return np.argmax(predictions[0])
-
-for i in range(400):
-    makePrediction()

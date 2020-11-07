@@ -29,9 +29,7 @@ class_dict = {  0:'0123',
                 23:'3021'
 }
 
-model = keras.models.load_model('kerasModelEveryone')
-
-def makePrediction():
+def makeEveryonePrediction(model):
     hand = []
     for i in range(0,4):
         starting = int(input("Starting player? (0 or 1): "))
@@ -60,8 +58,5 @@ def makePrediction():
                 hand.append(3.5)
 
     predictions = model.predict([hand])
-    print(class_dict.get(np.argmax(predictions[0])))
+    # print(class_dict.get(np.argmax(predictions[0])))
     return class_dict.get(np.argmax(predictions[0]))
-
-for i in range(400):
-    makePrediction()
