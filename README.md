@@ -1,5 +1,5 @@
 # Presidents-Keras-Tensorflow-Predictions
-Models that have examined data about hands from the presidents and assholes game in order to make predictions about specific hands. This repo also contains a discord bot so that you can make predictions on hands on your server.
+Models that have examined data about hands from the presidents and assholes game (generated from my bot framework https://github.com/JeremyHub/Presidents) in order to make predictions about specific hands. This repo also contains a discord bot so that you can make predictions on hands on your server.
 
 # How to use the models:
 In the "discordBot.py" file, at the bottom, is a place for an API key. Put your discord bot API key there. Then invite your bot to whatever server you want it on and run discordBot.py.
