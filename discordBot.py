@@ -7,18 +7,21 @@ import pandas as pd
 from kerasPredictions import *
 from kerasPredictionsEveryone import *
 
-from player import *
-from game import *
-from decks_and_cards import *
-from presRound import *
-from randomPlayer import *
-from worstPlayer import *
-from noTwoPlayer import *
-from twoerPlayer import *
-from personInputPlayer import *
-from oldPlayer import *
+# from player import *
+# from game import *
+# from decks_and_cards import *
+# from presRound import *
+# from randomPlayer import *
+# from worstPlayer import *
+# from noTwoPlayer import *
+# from twoerPlayer import *
+# from personInputPlayer import *
+# from oldPlayer import *
 
 client = commands.Bot(command_prefix=':')
+
+def build_pred_str(pred_arr, pred_dict):
+    pass
 
 @client.event
 async def on_ready():
@@ -49,21 +52,23 @@ async def makePrediction (ctx):
         if answer == 'normal':
             modelToUse = normalModel
             prediction = makeNormalPrediction(modelToUse, isStarting, hand)
+            max_pred = np.argmax(prediction)
             classes = {
                 0: 'Pres',
                 1: 'Vice-Pres',
                 2: 'Vice-Ass',
                 3: 'Ass',
             }
-            predictionStr = classes[prediction]
+            predictionStr = classes[max_pred] + "\nHere are the probabilities:\n" + prediction.__str__()
         elif answer == 'upperlower':
             modelToUse = upperLowerModel
             prediction = makeNormalPrediction(modelToUse, isStarting, hand)
+            max_pred = np.argmax(prediction)
             classes = {
                 0: 'Upper Class',
                 1: 'Lower Class'
             }
-            predictionStr = classes[prediction]
+            predictionStr = classes[max_pred] + "\nHere are the probabilities:\n" + prediction.__str__()
 
         await ctx.send('Here is the prediction:')
         await ctx.send(predictionStr)

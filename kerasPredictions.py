@@ -34,4 +34,4 @@ def makeNormalPrediction(model, isStarting, inputHand):
     predictions = model.predict([hand])
     # print(predictions[0])
     # print(np.argmax(predictions[0]))
-    return np.argmax(predictions[0])
+    return predictions[0]
